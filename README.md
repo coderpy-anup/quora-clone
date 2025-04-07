@@ -125,23 +125,23 @@ This project is licensed under the MIT License - feel free to use and modify it 
 
 ---
 ## Screeshots :
-![img.png](img.png)
+![img.png](assets/images/screenshots/img.png)
 _____
-![img_2.png](img_2.png)
+![img_2.png](assets/images/screenshots/img_2.png)
 ____
-![img_3.png](img_3.png)
+![img_3.png](assets/images/screenshots/img_3.png)
 ___
-![img_4.png](img_4.png)
+![img_4.png](assets/images/screenshots/img_4.png)
 ___
-![img_5.png](img_5.png)
+![img_5.png](assets/images/screenshots/img_5.png)
 ___
-![img_6.png](img_6.png)
+![img_6.png](assets/images/screenshots/img_6.png)
 ___
-![img_7.png](img_7.png)
+![img_7.png](assets/images/screenshots/img_7.png)
 ___
-![img_8.png](img_8.png)
+![img_8.png](assets/images/screenshots/img_8.png)
 ___
-![img_9.png](img_9.png)
+![img_9.png](assets/images/screenshots/img_9.png)
 
 ## 🤝 Contribution
 
