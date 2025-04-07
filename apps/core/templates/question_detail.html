@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+    <h2 class="mb-4">{{ question.title }}</h2>
+    <p>{{ question.body }}</p>
+    <p class="text-muted">Asked by {{ question.user.username }} | {{ question.created_at|date:"M d, Y H:i" }}</p>
+    <hr>
+    <h4>Answers</h4>
+    {% for answer in answers %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ answer.body }}</p>
+                <small class="text-muted">By {{ answer.user.username }} | {{ answer.created_at|date:"M d, Y H:i" }}</small>
+                <div>
+                    <a href="{% url 'core:like_answer' answer.pk %}" class="btn btn-sm btn-outline-danger mt-2">
+                        <i class="fas fa-heart"></i> Like ({{ answer.likes.count }})
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No answers yet. Be the first to answer!</p>
+    {% endfor %}
+
+    <hr>
+    {% if user.is_authenticated %}
+        <h5>Your Answer</h5>
+         <form method="post" action="{% url 'core:post_answer' question.pk %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    {{ field.label_tag }}
+                    {{ field|add_class:"form-control" }}
+                    {% if field.errors %}
+                        <div class="text-danger">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Post Answer</button>
+        </form>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">login</a> to post an answer.</p>
+    {% endif %}
+{% endblock %}

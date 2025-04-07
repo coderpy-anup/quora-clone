@@ -1,0 +1,13 @@
+body {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.navbar, .card, .footer {
+    background-color: #1e1e1e !important;
+    color: #f1f1f1;
+}
+
+a {
+    color: #90caf9;
+}

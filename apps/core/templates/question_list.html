@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h2 class="mb-4">Recent Questions</h2>
+    {% for question in questions %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5><a href="{% url 'core:question_detail' question.pk %}" class="text-decoration-none text-dark">{{ question.title }}</a></h5>
+                <p class="text-muted">Asked by {{ question.user.username }} | {{ question.created_at|date:"M d, Y H:i" }}</p>
+                {% if request.user == question.user %}
+                    <form method="post" action="{% url 'core:delete_question' question.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>  Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>No questions posted yet.</p>
+    {% endfor %}
+{% endblock %}

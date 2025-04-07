@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load widget_tweaks %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Quora Clone</title>
+    </head>
+	<body class="d-flex flex-column min-vh-100">
+    <!--================ Start Body Area =================-->
+             {% include 'header.html' %}
+             <main class="container my-4">
+                {% block content %}
+                {% endblock %}
+             </main>
+        <!--================ End Body Area =================-->
+
+		<!--================Start Footer Area =================-->
+            {% include 'footer.html' %}
+        <!--================Footer End Area ==============-->
+
+        <!--================Start Js Area =================-->
+            {% include 'script.html' %}
+            {% block script %}{% endblock %}
+        <!--================Js End Area =================-->
+    </body>
+</html>
