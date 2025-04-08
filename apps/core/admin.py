@@ -7,7 +7,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter  = ['id','user','created_at','updated_at']
 
     def get_user_id(self,obj):
-        return obj.user.name
+        return obj.user
 
 
 @admin.register(Answer)
@@ -19,4 +19,4 @@ class AnswerAdmin(admin.ModelAdmin):
         return obj.question.id
 
     def get_user_id(self, obj):
-        return obj.user.name
+        return obj.user

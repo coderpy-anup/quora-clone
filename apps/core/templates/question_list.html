@@ -10,7 +10,7 @@
                 {% if request.user == question.user %}
                     <form method="post" action="{% url 'core:delete_question' question.pk %}" class="d-inline">
                         {% csrf_token %}
-                        <button class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i>  Delete </button>
+                        <button class="btn btn-sm btn-outline-danger mt-2"><i class="fa fa-trash"></i></button>
                     </form>
                 {% endif %}
             </div>

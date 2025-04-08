@@ -17,9 +17,10 @@
                         <i class="fas fa-heart"></i> Like ({{ answer.likes.count }})
                     </a>
                     {% if request.user == answer.user %}
-                        <a href="{% url 'core:delete_answer' answer.pk %}" class="btn btn-sm btn-outline-danger mt-2">
-                            <i class="fa fa-trash"></i> Delete
-                        </a>
+                        <form method="post" action="{% url 'core:delete_answer' answer.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button class="btn btn-sm btn-outline-danger mt-2"><i class="fa fa-trash"></i></button>
+                        </form>
                     {% endif %}
                 </div>
             </div>
