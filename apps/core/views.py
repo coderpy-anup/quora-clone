@@ -96,3 +96,12 @@ def delete_question(request, pk):
         messages.success(request, "Question deleted successfully.")
         return redirect('core:question_list')  # or 'core:question_list' if you use that name
     return redirect('core:home')
+
+@login_required
+def delete_answer(request,pk):
+    answer = get_object_or_404(Answer, pk=pk, user=request.user)
+    if request.method == "POST":
+        answer.delete()  # This will also delete related answers if you set on_delete=models.CASCADE
+        messages.success(request, "Answer deleted successfully.")
+        return redirect('core:question_list')  # or 'core:question_list' if you use that name
+    return redirect('core:home')

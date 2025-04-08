@@ -16,6 +16,11 @@
                     <a href="{% url 'core:like_answer' answer.pk %}" class="btn btn-sm btn-outline-danger mt-2">
                         <i class="fas fa-heart"></i> Like ({{ answer.likes.count }})
                     </a>
+                    {% if request.user == answer.user %}
+                        <a href="{% url 'core:delete_answer' answer.pk %}" class="btn btn-sm btn-outline-danger mt-2">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -26,7 +31,7 @@
     <hr>
     {% if user.is_authenticated %}
         <h5>Your Answer</h5>
-         <form method="post" action="{% url 'core:post_answer' question.pk %}">
+        <form method="post" action="{% url 'core:post_answer' question.pk %}">
             {% csrf_token %}
             {% for field in form %}
                 <div class="mb-3">
