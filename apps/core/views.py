@@ -39,10 +39,21 @@ def home(request):
 
 def question_list(request):
     questions       = Question.objects.all().order_by('-created_at')
-    paginator       = Paginator(questions, 10)
+    question_lst    = []
+    for q_obj in questions:
+        dic = {
+            'id'            : q_obj.id,
+            'title'         : q_obj.title,
+            'user'          : q_obj.user,
+            'created_at'    : q_obj.created_at,
+            'answer_count'  : Answer.objects.select_related('question').filter(question=q_obj.id).count(),
+            'question_likes': q_obj.likes.all().count(),
+        }
+        question_lst.append(dic)
+    paginator       = Paginator(question_lst, 10)
     page_number     = request.GET.get('page')
     page_obj        = paginator.get_page(page_number)
-    return render(request, 'question_list.html', {'questions': page_obj})
+    return render(request, 'question_list.html', {'questions': question_lst})
 
 @login_required
 def post_question(request):
@@ -83,6 +94,16 @@ def like_answer(request, answer_id):
     else:
         answer.likes.add(request.user)
     return redirect('core:question_detail', pk=answer.question.pk)
+
+@login_required
+def like_question(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user in question.likes.all():
+        question.likes.remove(request.user)
+    else:
+        question.likes.add(request.user)
+        question.save()
+    return redirect('core:question_list')
 
 def sign_out(request):
     logout(request)
